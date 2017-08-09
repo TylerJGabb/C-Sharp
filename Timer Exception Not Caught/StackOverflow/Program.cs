@@ -15,6 +15,7 @@ namespace StackOverflow
         [STAThread]
         static void Main()
         {
+            Application.SetUnhandledExceptionMode(UnhandledExceptionMode.CatchException);
             AppDomain.CurrentDomain.UnhandledException += new UnhandledExceptionEventHandler(UnhandledExceptionOccurred);
             Application.ThreadException += new System.Threading.ThreadExceptionEventHandler(UnhandledExceptionOccurred);
             Application.EnableVisualStyles();
@@ -33,6 +34,11 @@ namespace StackOverflow
         {
             var x = e_thread.Exception;
             MessageBox.Show("Thread Exception\r\n" + x.Message);
+        }
+
+        public static void GlobalEventHandler(object sender, EventArgs)
+        {
+
         }
 
     }

@@ -14,13 +14,17 @@ namespace StackOverflow
     public partial class Form1 : Form
     {
         System.Timers.Timer T;
+        System.Threading.Timer T1;
         public Form1()
         {
             InitializeComponent();
             T = new System.Timers.Timer();
+            Foo F;
             T.Interval = 5000; //Miliseconds;
             T.Elapsed += new ElapsedEventHandler(TimerElapsed);
-            T.Start();
+            //T.Start();
+            T.SynchronizingObject = this;
+            F = new Foo(this);
         }
 
         public void TimerElapsed(object sender, ElapsedEventArgs e)
